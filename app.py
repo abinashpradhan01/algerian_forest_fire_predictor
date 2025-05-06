@@ -6,9 +6,10 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import ElasticNetCV
 import pickle
+import os
 
-application = Flask(__name__)
-app=application
+app = Flask(__name__)
+
 
 ## import elasticcv and standardscaler pickle
 loaded_scaler = pickle.load(open("models/scaler.pkl", "rb"))
@@ -44,4 +45,5 @@ def predict():
 
 
 if __name__ == "__main__":
-	app.run(host="0.0.0.0", debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)

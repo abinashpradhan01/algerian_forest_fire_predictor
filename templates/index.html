@@ -2,17 +2,292 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Algerian Forest Fire Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algerian Forest Fire Predictor</title>
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #4caf50;
+            --accent-color: #ff6f00;
+            --light-bg: #f5f9f5;
+            --dark-text: #333;
+            --light-text: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .site-header {
+            position: relative;
+            width: 100%;
+        }
+        
+        .dev-icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 1.8rem;
+            color: var(--light-text);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+        
+        .dev-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        main {
+            padding: 50px 0;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        
+        .cta-button:hover {
+            background-color: #e65100;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+        
+        .info-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .info-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .info-card {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .info-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .info-card ul {
+            padding-left: 20px;
+        }
+        
+        .info-card li {
+            margin-bottom: 8px;
+        }
+        
+        .model-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .metric-card {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 200px;
+        }
+        
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        
+        .links a {
+            color: #b3e5fc;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .links a:hover {
+            color: #e3f2fd;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .logo h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .model-metrics {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .metric-card {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
-<body style="margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f8ff; color: #333;">
-
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
-        <h1 style="color: #2e8b57; font-size: 3em; margin-bottom: 0.2em;">🌲 Algerian Forest Fire Predictor</h1>
-        <p style="font-size: 1.3em; max-width: 600px; text-align: center;">
-            Welcome to the Forest Fire Prediction system for Algeria. This tool helps assess the likelihood of forest fires 
-            using environmental and weather data, aiming to support early detection and mitigation strategies.
-        </p>
-    </div>
-
+<body>
+    <header>
+        <div class="container">
+            <div class="site-header">
+                <a href="https://abinashpradhan01.github.io" target="_blank" class="dev-icon" title="Developer's Website">👨‍💻</a>
+                <div class="logo">
+                    <span style="font-size: 2.5rem;">🌲</span>
+                    <h1>Algerian Forest Fire Predictor</h1>
+                </div>
+            </div>
+            <p class="subtitle">
+                Advanced machine learning system to predict forest fire risks in Algeria using environmental and weather data
+            </p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="hero">
+            <h2>Predict Fire Weather Index (FWI) for Early Detection & Mitigation</h2>
+            <p>Our AI-powered tool helps assess the likelihood of forest fires using environmental and weather data, supporting early detection and mitigation strategies.</p>
+            <a href="https://algerian-forest-fire-predictor.onrender.com/predict" class="cta-button">Try the Prediction Model</a>
+        </section>
+        
+        <section class="info-section">
+            <h2>How It Works</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Input Variables</h3>
+                    <ul>
+                        <li><strong>RH:</strong> Relative Humidity (21% to 90%)</li>
+                        <li><strong>WS:</strong> Wind Speed (6 to 29 km/h)</li>
+                        <li><strong>Rain:</strong> Total Day (0 to 16.8 mm)</li>
+                        <li><strong>FFMC:</strong> Fine Fuel Moisture Code (28.6 to 92.5)</li>
+                        <li><strong>DMC:</strong> Duff Moisture Code (1.1 to 65.9)</li>
+                        <li><strong>ISI:</strong> Initial Spread Index (0 to 18.5)</li>
+                        <li><strong>Classes:</strong> Fire (1) or Not Fire (0)</li>
+                        <li><strong>Region:</strong> Bejaia region (0) or Sidi Bel Abbes region (1)</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>Prediction Model</h3>
+                    <p>We use an ElasticNetCV model for prediction, which combines L1 and L2 regularization for optimal performance. The model was selected after comparative analysis with other regression algorithms.</p>
+                    <div class="model-metrics">
+                        <div class="metric-card">
+                            <p>Mean Absolute Error</p>
+                            <div class="metric-value">0.658</div>
+                        </div>
+                        <div class="metric-card">
+                            <p>R² Score</p>
+                            <div class="metric-value">0.981</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="info-section">
+            <h2>About the Project</h2>
+            <p>The Algerian Forest Fire Predictor is built using machine learning techniques to analyze environmental and meteorological factors that contribute to forest fires. By accurately predicting the Fire Weather Index (FWI), this tool can help authorities and environmental agencies implement timely prevention measures and resource allocation strategies.</p>
+            <br>
+            <p>For in-depth information about the model development process, check out our technical resources:</p>
+            <div class="links" style="margin-top: 20px;">
+                <a href="https://github.com/abinashpradhan01/algerian_forest_fire_predictor/blob/c8e204e19e92fed67dc3a5d8caec8ffe6e1eccb0/notebooks/Algerian_Forest_Fire_EDA.ipynb" target="_blank">Exploratory Data Analysis</a> |
+                <a href="https://github.com/abinashpradhan01/algerian_forest_fire_predictor/blob/c8e204e19e92fed67dc3a5d8caec8ffe6e1eccb0/notebooks/05_Algerian_forest_fire_Model_training.ipynb" target="_blank">Model Training & Comparison</a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Algerian Forest Fire Predictor | Developed by <a href="https://abinashpradhan01.github.io" target="_blank" style="color: white; text-decoration: underline;">Abinash Pradhan</a></p>
+        </div>
+    </footer>
 </body>
 </html>
